@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
-// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name JitsiMeet
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name JitsiMeet
 import AVKit
 import CallKit
 import Foundation
@@ -13,7 +13,7 @@ public protocol PiPViewCoordinatorDelegate : AnyObject {
 public class PiPViewCoordinator {
   public var dragBoundInsets: UIKit.UIEdgeInsets {
     get
-    set
+    set(value)
   }
   public enum Position {
     case lowerRightCorner
@@ -53,7 +53,7 @@ public protocol CXProviderProtocol : AnyObject {
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class JMCallKitProxy : ObjectiveC.NSObject {
   public static var provider: JitsiMeet.CXProviderProtocol? {
     get
-    set
+    set(value)
   }
   @objc public static func addListener(_ listener: JitsiMeet.JMCallKitListener)
   @objc public static func removeListener(_ listener: JitsiMeet.JMCallKitListener)
@@ -76,5 +76,3 @@ public protocol CXProviderProtocol : AnyObject {
   @objc optional func providerDidDeactivateAudioSession(session: AVFoundation.AVAudioSession)
   @objc optional func providerTimedOutPerformingAction(action: CallKit.CXAction)
 }
-extension JitsiMeet.PiPViewCoordinator.Position : Swift.Equatable {}
-extension JitsiMeet.PiPViewCoordinator.Position : Swift.Hashable {}
