@@ -60,6 +60,10 @@ public protocol CXCallControllerProtocol : AnyObject {
     set
   }
   public static var callController: JitsiMeet.CXCallControllerProtocol?
+  @objc public static var enabled: Swift.Bool {
+    @objc get
+    @objc set
+  }
   @objc public static func configureProvider(localizedName: Swift.String, ringtoneSound: Swift.String?, iconTemplateImageData: Foundation.Data?)
   @objc public static func isProviderConfigured() -> Swift.Bool
   @objc public static func addListener(_ listener: JitsiMeet.JMCallKitListener)
