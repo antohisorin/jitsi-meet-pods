@@ -49,17 +49,20 @@ public protocol CXProviderProtocol : AnyObject {
   func reportCall(with UUID: Foundation.UUID, endedAt dateEnded: Foundation.Date?, reason endedReason: CallKit.CXCallEndedReason)
   func reportOutgoingCall(with UUID: Foundation.UUID, startedConnectingAt dateStartedConnecting: Foundation.Date?)
   func reportOutgoingCall(with UUID: Foundation.UUID, connectedAt dateConnected: Foundation.Date?)
+  func invalidate()
 }
 public protocol CXCallControllerProtocol : AnyObject {
   var calls: [CallKit.CXCall] { get }
   func request(_ transaction: CallKit.CXTransaction, completion: @escaping (Swift.Error?) -> Swift.Void)
 }
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class JMCallKitProxy : ObjectiveC.NSObject {
-  public static var provider: JitsiMeet.CXProviderProtocol? {
+extension CXProvider : JitsiMeet.CXProviderProtocol {
+}
+extension CXCallController : JitsiMeet.CXCallControllerProtocol {
+  public var calls: [CallKit.CXCall] {
     get
-    set
   }
-  public static var callController: JitsiMeet.CXCallControllerProtocol?
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class JMCallKitProxy : ObjectiveC.NSObject {
   @objc public static var enabled: Swift.Bool {
     @objc get
     @objc set
