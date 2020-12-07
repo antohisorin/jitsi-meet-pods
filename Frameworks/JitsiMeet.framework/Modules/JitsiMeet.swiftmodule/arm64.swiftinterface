@@ -63,6 +63,8 @@ extension CXCallController : JitsiMeet.CXCallControllerProtocol {
   }
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class JMCallKitProxy : ObjectiveC.NSObject {
+  public static var callKitProvider: JitsiMeet.CXProviderProtocol?
+  public static var callKitCallController: JitsiMeet.CXCallControllerProtocol?
   @objc public static var enabled: Swift.Bool {
     @objc get
     @objc set
